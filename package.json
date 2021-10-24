@@ -1,0 +1,21 @@
+{
+  "name": "yamazakiapi",
+  "version": "1.0.0",
+  "description": "api yamazakijudo",
+  "main": "src/loader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jknoda",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "epxress": "0.0.1-security",
+    "express": "^4.17.1",
+    "express-query-int": "^3.0.0",
+    "loadash": "^1.0.0",
+    "mysql2": "^2.3.2",
+    "quick-local-ip": "^1.0.7",
+    "sequelize": "^6.7.0"
+  }
+}
