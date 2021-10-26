@@ -5,7 +5,10 @@ module.exports = function (server) {
     server.use('/api', api);
 
     const UsuarioController = require('../controllers/Usuario/UsuarioController');
+    api.post('/usuario/create', UsuarioController.create);
     api.post('/usuario/finduser', UsuarioController.finduser);
+    api.post('/usuario/find', UsuarioController.find);
+    api.post('/usuario/update', UsuarioController.update);
 
     /*
     /*

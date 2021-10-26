@@ -3,61 +3,61 @@ const { Model, DataTypes } = require('sequelize');
 class Usuario extends Model {
     static init(sequelize) {
         super.init({
-            EmpIdf: {
+            empidf: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 allowNull: false
             },
-            UsuIdf: {
+            usuidf: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 allowNull: false
             },
-            UsuEmail: {
+            usuemail: {
                 type: DataTypes.STRING(100),
                 allowNull: false
             },
-            UsuNome: {
+            usunome: {
                 type: DataTypes.STRING(100),
                 allowNull: false
             },
-            UsuCPF: {
+            usucpf: {
                 type: DataTypes.NUMBER,
                 allowNull: true
             },
-            UsuLogradouro: {
+            usulogradouro: {
                 type: DataTypes.STRING(100),
                 allowNull: true
             },
-            UsuLogNum: {
+            usulognum: {
                 type: DataTypes.NUMBER,
                 allowNull: true
             },
-            UsuBairro: {
+            usubairro: {
                 type: DataTypes.STRING(45),
                 allowNull: true
             },
-            UsuCidade: {
+            usucidade: {
                 type: DataTypes.STRING(100),
                 allowNull: true
             },
-            UsuUF: {
+            usuuf: {
                 type: DataTypes.STRING(2),
                 allowNull: true
             },
-            UsuCelular: {
+            usucelular: {
                 type: DataTypes.STRING(20),
                 allowNull: true
             },
-            UsuFone: {
+            usufone: {
                 type: DataTypes.STRING(20),
                 allowNull: true
             },
-            DataInc: {
+            datainc: {
                 type: DataTypes.DATE,
                 allowNull: false
             },
-            DataAlt: {
+            dataalt: {
                 type: DataTypes.DATE,
                 allowNull: true
             }
