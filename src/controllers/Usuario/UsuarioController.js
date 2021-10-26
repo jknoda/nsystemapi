@@ -16,6 +16,9 @@ module.exports = {
             order: [[ 'usuidf', 'DESC' ]]
         }).then((data)=>{
             usuidf = data.usuidf;
+        }).catch(()=>{
+            usuidf = 0;
+        }).finally(()=>{
             usuidf++;
             Usuario.create({empidf, usuidf, usuemail, usunome, 
                 usucpf, usulogradouro, usulognum,
@@ -26,8 +29,6 @@ module.exports = {
             }).catch(function(err){
                 return errDB(res,err);
             });
-        }).catch(function(err){
-            return errDB(res,err);
         });
     },
 
