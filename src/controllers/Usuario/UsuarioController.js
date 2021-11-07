@@ -4,11 +4,9 @@ const Usuario = require('../../models/Usuario')
 module.exports = {
     async create(req,res){
         const {EmpIdf, UsuEmail, UsuNome, 
-            UsuCPF, UsuLogradouro, UsuLogNum,
-            UsuBairro, UsuCidade, UsuUF, 
-            UsuCelular, UsuFone, UsuPeso, UsuAltura, UsuDataNasc} = req.body;
-        const datainc = new Date();
-        const dataalt = new Date();
+            UsuCPF, UsuPerfil } = req.body;
+        const DataInc = new Date();
+        const DataAlt = new Date();
         var UsuIdf = 0;
         await Usuario.findOne({
             attributes: ['UsuIdf'],
@@ -21,9 +19,7 @@ module.exports = {
         }).finally(()=>{
             UsuIdf++;
             Usuario.create({EmpIdf, UsuIdf, UsuEmail, UsuNome, 
-                UsuCPF, UsuLogradouro, UsuLogNum,
-                UsuBairro, UsuCidade, UsuUF, 
-                UsuCelular, UsuFone, UsuPeso, UsuAltura, UsuDataNasc, datainc, dataalt})
+                UsuCPF, UsuPerfil, DataInc, DataAlt})
             .then(()=>{
                 return res.json(UsuIdf);
             }).catch(function(err){
@@ -54,16 +50,12 @@ module.exports = {
 
     async update(req,res){
         const {EmpIdf, UsuIdf, UsuNome, 
-            UsuCPF, UsuLogradouro, UsuLogNum,
-            UsuBairro, UsuCidade, UsuUF, 
-            UsuCelular, UsuFone, UsuPeso, UsuAltura, UsuDataNasc} = req.body;
-        const dataalt = new Date();
+            UsuCPF, UsuPerfil } = req.body;
+        const DataAlt = new Date();
         await Usuario.update(
         {
             UsuNome, 
-            UsuCPF, UsuLogradouro, UsuLogNum,
-            UsuBairro, UsuCidade, UsuUF, 
-            UsuCelular, UsuFone, UsuPeso, UsuAltura, UsuDataNasc, dataalt
+            UsuCPF , UsuPerfil, DataAlt
         },
         {
             where: {

@@ -8,5 +8,7 @@ Empresa.init(connection);
 const Usuario = require('../models/Usuario');
 Usuario.init(connection);
 
+const Aluno = require('../models/Aluno');
+Aluno.init(connection);
 
 module.exports = connection;
