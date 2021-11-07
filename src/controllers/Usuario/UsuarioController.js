@@ -1,31 +1,31 @@
 const errDB = require('../../common/_sendErrorsDB');
-const Usuario = require('../../models/Usuario/Usuario')
+const Usuario = require('../../models/Usuario')
 
 module.exports = {
     async create(req,res){
-        const {empidf, usuemail, usunome, 
-            usucpf, usulogradouro, usulognum,
-            usubairro, usucidade, usuuf, 
-            usucelular, usufone} = req.body;
+        const {EmpIdf, UsuEmail, UsuNome, 
+            UsuCPF, UsuLogradouro, UsuLogNum,
+            UsuBairro, UsuCidade, UsuUF, 
+            UsuCelular, UsuFone, UsuPeso, UsuAltura, UsuDataNasc} = req.body;
         const datainc = new Date();
         const dataalt = new Date();
-        var usuidf = 0;
+        var UsuIdf = 0;
         await Usuario.findOne({
-            attributes: ['usuidf'],
-            where: {empidf:empidf},
-            order: [[ 'usuidf', 'DESC' ]]
+            attributes: ['UsuIdf'],
+            where: {EmpIdf:EmpIdf},
+            order: [[ 'UsuIdf', 'DESC' ]]
         }).then((data)=>{
-            usuidf = data.usuidf;
+            UsuIdf = data.UsuIdf;
         }).catch(()=>{
-            usuidf = 0;
+            UsuIdf = 0;
         }).finally(()=>{
-            usuidf++;
-            Usuario.create({empidf, usuidf, usuemail, usunome, 
-                usucpf, usulogradouro, usulognum,
-                usubairro, usucidade, usuuf, 
-                usucelular, usufone, datainc, dataalt})
+            UsuIdf++;
+            Usuario.create({EmpIdf, UsuIdf, UsuEmail, UsuNome, 
+                UsuCPF, UsuLogradouro, UsuLogNum,
+                UsuBairro, UsuCidade, UsuUF, 
+                UsuCelular, UsuFone, UsuPeso, UsuAltura, UsuDataNasc, datainc, dataalt})
             .then(()=>{
-                return res.json(usuidf);
+                return res.json(UsuIdf);
             }).catch(function(err){
                 return errDB(res,err);
             });
@@ -33,9 +33,9 @@ module.exports = {
     },
 
     async finduser(req,res){
-        const {empidf,usuemail} = req.body;
+        const {EmpIdf,UsuEmail} = req.body;
         const retorno = await Usuario.findOne({
-            where : {empidf,usuemail}
+            where : {EmpIdf,UsuEmail}
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -43,9 +43,9 @@ module.exports = {
     },
 
     async find(req,res){
-        const {empidf,usuidf} = req.body;
+        const {EmpIdf,UsuIdf} = req.body;
         const retorno = await Usuario.findOne({
-            where : {empidf, usuidf}
+            where : {EmpIdf, UsuIdf}
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -53,25 +53,25 @@ module.exports = {
     },
 
     async update(req,res){
-        const {empidf, usuidf, usunome, 
-            usucpf, usulogradouro, usulognum,
-            usubairro, usucidade, usuuf, 
-            usucelular, usufone} = req.body;
+        const {EmpIdf, UsuIdf, UsuNome, 
+            UsuCPF, UsuLogradouro, UsuLogNum,
+            UsuBairro, UsuCidade, UsuUF, 
+            UsuCelular, UsuFone, UsuPeso, UsuAltura, UsuDataNasc} = req.body;
         const dataalt = new Date();
         await Usuario.update(
         {
-            usunome, 
-            usucpf, usulogradouro, usulognum,
-            usubairro, usucidade, usuuf, 
-            usucelular, usufone, dataalt
+            UsuNome, 
+            UsuCPF, UsuLogradouro, UsuLogNum,
+            UsuBairro, UsuCidade, UsuUF, 
+            UsuCelular, UsuFone, UsuPeso, UsuAltura, UsuDataNasc, dataalt
         },
         {
             where: {
-                empidf: empidf,
-                usuidf: usuidf
+                EmpIdf: EmpIdf,
+                UsuIdf: UsuIdf
             }            
         }).then((data)=>{
-                return res.json(usuidf);
+                return res.json(UsuIdf);
         }).catch(function(err){
             return errDB(res,err);
         });

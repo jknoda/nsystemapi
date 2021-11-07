@@ -3,61 +3,74 @@ const { Model, DataTypes } = require('sequelize');
 class Usuario extends Model {
     static init(sequelize) {
         super.init({
-            empidf: {
+            EmpIdf: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 allowNull: false
             },
-            usuidf: {
+            UsuIdf: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 allowNull: false
             },
-            usuemail: {
+            UsuEmail: {
                 type: DataTypes.STRING(100),
                 allowNull: false
             },
-            usunome: {
+            UsuNome: {
                 type: DataTypes.STRING(100),
                 allowNull: false
             },
-            usucpf: {
+            UsuCPF: {
                 type: DataTypes.NUMBER,
                 allowNull: true
             },
-            usulogradouro: {
+            UsuLogradouro: {
                 type: DataTypes.STRING(100),
                 allowNull: true
             },
-            usulognum: {
+            UsuLogNum: {
                 type: DataTypes.NUMBER,
                 allowNull: true
             },
-            usubairro: {
+            UsuBairro: {
                 type: DataTypes.STRING(45),
                 allowNull: true
             },
-            usucidade: {
+            UsuCidade: {
                 type: DataTypes.STRING(100),
                 allowNull: true
             },
-            usuuf: {
+            UsuUF: {
                 type: DataTypes.STRING(2),
                 allowNull: true
             },
-            usucelular: {
+            UsuCelular: {
                 type: DataTypes.STRING(20),
                 allowNull: true
             },
-            usufone: {
+            UsuFone: {
                 type: DataTypes.STRING(20),
                 allowNull: true
             },
-            datainc: {
+
+            UsuPeso: {
+                type: DataTypes.NUMBER,
+                allowNull: true
+            },
+            UsuAltura: {
+                type: DataTypes.NUMBER,
+                allowNull: true
+            },
+            UsuDataNasc: {
+                type: DataTypes.DATE,  
+                allowNull: true
+            },
+            DataInc: {
                 type: DataTypes.DATE,
                 allowNull: false
             },
-            dataalt: {
+            DataAlt: {
                 type: DataTypes.DATE,
                 allowNull: true
             }
