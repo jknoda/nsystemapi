@@ -1,5 +1,5 @@
-const errDB = require('../../common/_sendErrorsDB');
-const Usuario = require('../../models/Usuario')
+const errDB = require('../common/_sendErrorsDB');
+const Usuario = require('../models/Usuario')
 
 module.exports = {
     async create(req,res){

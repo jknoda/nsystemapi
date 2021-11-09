@@ -11,4 +11,14 @@ Usuario.init(connection);
 const Aluno = require('../models/Aluno');
 Aluno.init(connection);
 
+const Atividade = require('../models/Atividade');
+Atividade.init(connection);
+
+const Treino = require('../models/Treino');
+Treino.init(connection);
+
+const TreinoAtv = require('../models/TreinoAtv');
+TreinoAtv.init(connection);
+
+
 module.exports = connection;
