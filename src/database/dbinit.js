@@ -20,5 +20,10 @@ Treino.init(connection);
 const TreinoAtv = require('../models/TreinoAtv');
 TreinoAtv.init(connection);
 
+const TreinoAlu = require('../models/TreinoAlu');
+TreinoAlu.init(connection);
+
+const Anamnese = require('../models/Anamnese');
+Anamnese.init(connection);
 
 module.exports = connection;

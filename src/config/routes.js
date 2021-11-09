@@ -39,6 +39,23 @@ module.exports = function (server) {
     api.post('/treinoAtv/update', TreinoAtvController.update);
     api.post('/treinoAtv/delete', TreinoAtvController.delete);
 
+    const TreinoAluController = require('../controllers/TreinoAluController');
+    api.post('/treinoalu/create', TreinoAluController.create);
+    api.post('/treinoalu/findall', TreinoAluController.findall);
+    api.post('/treinoalu/find', TreinoAluController.find);
+    api.post('/treinoalu/update', TreinoAluController.update);
+    api.post('/treinoalu/delete', TreinoAluController.delete);
+
+    const AnamneseController = require('../controllers/AnamneseController');
+    api.post('/anamnese/create', AnamneseController.create);
+    api.post('/anamnese/findall', AnamneseController.findall);
+    api.post('/anamnese/find', AnamneseController.find);
+    api.post('/anamnese/findlast', AnamneseController.findlast);
+    api.post('/anamnese/update', AnamneseController.update);
+    api.post('/anamnese/delete', AnamneseController.delete);
+    api.post('/anamnese/has', AnamneseController.has);
+
+
     /*
     /*
     * API Públicas - rotas abertas
