@@ -22,6 +22,10 @@ class TreinoAlu extends Model {
                 type: DataTypes.STRING(200),
                 allowNull: true
             },
+            TreAluNome: {
+                type: DataTypes.STRING(100),
+                allowNull: true
+            },
             DataInc: {
                 type: DataTypes.DATE,
                 allowNull: false

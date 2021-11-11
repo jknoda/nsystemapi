@@ -6,12 +6,14 @@ module.exports = {
         const {EmpIdf,
             TreIdf,
             AluIdf,
+            TreAluNome,
             TreAluObs} = req.body;
         const DataInc = new Date();
         const DataAlt = new Date();
         await TreinoAlu.create({EmpIdf,
             TreIdf,
             AluIdf,
+            TreAluNome,
             TreAluObs,
             DataInc,
             DataAlt})
@@ -46,6 +48,7 @@ module.exports = {
         const {EmpIdf,
             TreIdf,
             AluIdf,
+            TreAluNome,
             TreAluObs} = req.body;
         const DataAlt = new Date();
         await TreinoAlu.update(
@@ -53,6 +56,7 @@ module.exports = {
             EmpIdf,
             TreIdf,
             AluIdf,
+            TreAluNome,
             TreAluObs,
             DataAlt
         },
@@ -63,7 +67,7 @@ module.exports = {
                 AluIdf: AluIdf
             }            
         }).then((data)=>{
-                return res.json(TreAtvItem);
+                return res.json(AluIdf);
         }).catch(function(err){
             return errDB(res,err);
         });
