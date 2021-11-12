@@ -8,7 +8,9 @@ module.exports = function (server) {
     api.post('/usuario/create', UsuarioController.create);
     api.post('/usuario/finduser', UsuarioController.finduser);
     api.post('/usuario/find', UsuarioController.find);
+    api.post('/usuario/findall', UsuarioController.findall);
     api.post('/usuario/update', UsuarioController.update);
+    api.post('/usuario/delete', UsuarioController.delete);
 
     const AlunoController = require('../controllers/AlunoController');
     api.post('/aluno/create', AlunoController.create);

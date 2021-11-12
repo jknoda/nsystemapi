@@ -48,6 +48,16 @@ module.exports = {
         return res.json(retorno);
     },
 
+    async findall(req,res){
+        const {EmpIdf,UsuIdf} = req.body;
+        const retorno = await Usuario.findAll({
+            where : {EmpIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno);
+    },
+
     async update(req,res){
         const {EmpIdf, UsuIdf, UsuNome, 
             UsuCPF, UsuPerfil } = req.body;
@@ -68,5 +78,15 @@ module.exports = {
             return errDB(res,err);
         });
     },
+
+    async delete(req,res){
+        const {EmpIdf, UsuIdf} = req.body;
+        const retorno = await Usuario.destroy({
+            where : {EmpIdf, UsuIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno);
+    }
 
 }
