@@ -60,6 +60,13 @@ module.exports = function (server) {
     const ConsultaAtividadesController = require('../controllers/ConsultaAtividadesController');
     api.post('/consulta/findmonthyear', ConsultaAtividadesController.findMonthYear);
 
+    const MensagemController = require('../controllers/MensagemController');
+    api.post('/mensagem/create', MensagemController.create);
+    api.post('/mensagem/createresp', MensagemController.createresp);
+    api.post('/mensagem/findall', MensagemController.findall);
+    api.post('/mensagem/find', MensagemController.find);
+    api.post('/mensagem/update', MensagemController.update);
+    api.post('/mensagem/delete', MensagemController.delete);
 
     /*
     /*

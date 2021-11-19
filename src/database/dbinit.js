@@ -29,4 +29,7 @@ Anamnese.init(connection);
 const ConsultaAtividades = require('../models/ConsultaAtividades');
 ConsultaAtividades.init(connection);
 
+const Mensagem = require('../models/Mensagem');
+Mensagem.init(connection);
+
 module.exports = connection;
