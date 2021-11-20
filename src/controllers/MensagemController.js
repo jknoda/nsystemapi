@@ -94,7 +94,10 @@ module.exports = {
     async findall(req,res){
         const {EmpIdf} = req.body;
         const retorno = await Mensagem.findAll({
-            where : {EmpIdf}
+            where : {EmpIdf},
+            order : [
+                ['DataInc','DESC']
+            ]
         }).catch(function(err){
             return errDB(res,err);
         });
