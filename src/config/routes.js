@@ -68,6 +68,9 @@ module.exports = function (server) {
     api.post('/mensagem/update', MensagemController.update);
     api.post('/mensagem/delete', MensagemController.delete);
 
+    const EmailController = require('../controllers/MailController');
+    api.post('/email/enviar', EmailController.enviar);
+
     /*
     /*
     * API Públicas - rotas abertas
