@@ -93,15 +93,46 @@ module.exports = {
 
     async findall(req,res){
         const {EmpIdf} = req.body;
-        const retorno = await Mensagem.findAll({
+        var retorno = await Mensagem.findAll({
             where : {EmpIdf},
             order : [
+                ['MsgIdf','DESC'],
                 ['DataInc','DESC']
             ]
         }).catch(function(err){
             return errDB(res,err);
         });
-        return res.json(retorno);
+        let quebra = -1;
+        let comentarios = [];
+        var retornoAux = [];
+        var elementAux = new Mensagem();
+        retorno.forEach(element => {
+            if (quebra != element.MsgIdf)
+            {
+                if (quebra != -1){
+                    retornoAux.push({
+                        ...elementAux.dataValues,
+                        comentarios
+                    });
+                }
+                comentarios = [];
+                quebra = element.MsgIdf;
+            }
+            if (element.MsgIdfIt == 0){
+                elementAux = element;
+            }else{
+                comentarios.push(element);
+            }
+        });
+        if (quebra != -1){
+            if (quebra != -1){
+                retornoAux.push({
+                    ...elementAux.dataValues,
+                    comentarios
+                });
+            }
+        }
+        return res.json(retornoAux);
     },
 
     async update(req,res){
