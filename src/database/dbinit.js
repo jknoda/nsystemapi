@@ -32,4 +32,8 @@ ConsultaAtividades.init(connection);
 const Mensagem = require('../models/Mensagem');
 Mensagem.init(connection);
 
+const Configuracao = require('../models/Configuracao');
+Configuracao.init(connection);
+
+
 module.exports = connection;

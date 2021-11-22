@@ -71,6 +71,14 @@ module.exports = function (server) {
     const EmailController = require('../controllers/MailController');
     api.post('/email/enviar', EmailController.enviar);
 
+    const ConfiguracaoController = require('../controllers/ConfiguracaoController');
+    api.post('/configuracao/create', ConfiguracaoController.create);
+    api.post('/configuracao/findall', ConfiguracaoController.findall);
+    api.post('/configuracao/findarray', ConfiguracaoController.findarray);
+    api.post('/configuracao/find', ConfiguracaoController.find);
+    api.post('/configuracao/update', ConfiguracaoController.update);
+    api.post('/configuracao/delete', ConfiguracaoController.delete);
+
     /*
     /*
     * API Públicas - rotas abertas
