@@ -6,6 +6,7 @@ module.exports = {
         const {EmpIdf,
             MsgTexto,
             MsgEmail,
+            MsgNome,
             UsuIdf } = req.body;
         const DataInc = new Date();
         const DataAlt = new Date();
@@ -30,6 +31,7 @@ module.exports = {
                 MsgIdfIt,
                 MsgTexto,
                 MsgEmail,
+                MsgNome,
                 UsuIdf,
                 DataInc,
                 DataAlt})
@@ -46,6 +48,7 @@ module.exports = {
             MsgIdf,
             MsgTexto,
             MsgEmail,
+            MsgNome,
             UsuIdf } = req.body;
         const DataInc = new Date();
         const DataAlt = new Date();
@@ -70,6 +73,7 @@ module.exports = {
                 MsgIdfIt,
                 MsgTexto,
                 MsgEmail,
+                MsgNome,
                 UsuIdf,
                 DataInc,
                 DataAlt})
@@ -141,6 +145,7 @@ module.exports = {
             MsgIdfIt,
             MsgTexto,
             MsgEmail,
+            MsgNome,
             UsuIdf } = req.body;
         const DataAlt = new Date();
         await Mensagem.update(
@@ -150,6 +155,7 @@ module.exports = {
             MsgIdfIt,
             MsgTexto,
             MsgEmail,
+            MsgNome,
             UsuIdf,
             DataAlt
         },

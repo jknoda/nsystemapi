@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 
 module.exports = {
     enviar(req,res){
-        const {service, user, pass, from, to, subject, text, html} = req.body;
+        const {service, user, pass, from, to, cc, subject, text, html} = req.body;
         const  transporter = nodemailer.createTransport({
             service: service,
             auth: {
@@ -17,6 +17,7 @@ module.exports = {
         const email = {
             from: from,
             to: to,
+            cc: cc,
             subject: subject,
             text: text,
             html: html

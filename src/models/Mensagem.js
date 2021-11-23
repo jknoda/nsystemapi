@@ -26,6 +26,10 @@ class Mensagem extends Model {
                 type: DataTypes.STRING(100),
                 allowNull: true
             },
+            MsgNome: {
+                type: DataTypes.STRING(100),
+                allowNull: true
+            },
             UsuIdf: {
                 type: DataTypes.INTEGER,
                 allowNull: true

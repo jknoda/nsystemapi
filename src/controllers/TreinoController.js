@@ -6,6 +6,7 @@ module.exports = {
         const {EmpIdf,
             TreData,
             TreTitulo,
+            TreResponsavel,
             TreObs } = req.body;
         const DataInc = new Date();
         const DataAlt = new Date();
@@ -24,6 +25,7 @@ module.exports = {
                 TreIdf,
                 TreData,
                 TreTitulo,
+                TreResponsavel,
                 TreObs,
                 DataInc,
                 DataAlt})
@@ -60,6 +62,7 @@ module.exports = {
             TreIdf,
             TreData,
             TreTitulo,
+            TreResponsavel,
             TreObs } = req.body;
         const DataAlt = new Date();
         await Treino.update(
@@ -68,6 +71,7 @@ module.exports = {
             TreIdf,
             TreData,
             TreTitulo,
+            TreResponsavel,
             TreObs,
             DataAlt
         },

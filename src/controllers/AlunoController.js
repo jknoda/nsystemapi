@@ -74,7 +74,8 @@ module.exports = {
     async findall(req,res){
         const {EmpIdf} = req.body;
         const retorno = await Aluno.findAll({
-            where : {EmpIdf}
+            where : {EmpIdf},
+            order: ['AluNome']
         }).catch(function(err){
             return errDB(res,err);
         });
