@@ -21,7 +21,7 @@ class Treino extends Model {
                 type: DataTypes.STRING(45),
                 allowNull: true
             },
-            TreResponsvel: {
+            TreResponsavel: {
                 type: DataTypes.STRING(100),
                 allowNull: true
             },
