@@ -4,6 +4,7 @@ const Treino = require('../models/Treino')
 module.exports = {
     async create(req,res){
         const {EmpIdf,
+            TreTipo,
             TreData,
             TreTitulo,
             TreResponsavel,
@@ -23,6 +24,7 @@ module.exports = {
             TreIdf++;
             Treino.create({EmpIdf,
                 TreIdf,
+                TreTipo,
                 TreData,
                 TreTitulo,
                 TreResponsavel,
@@ -60,6 +62,7 @@ module.exports = {
     async update(req,res){
         const {EmpIdf,
             TreIdf,
+            TreTipo,
             TreData,
             TreTitulo,
             TreResponsavel,
@@ -67,8 +70,9 @@ module.exports = {
         const DataAlt = new Date();
         await Treino.update(
         {
-            EmpIdf,
+            EmpIdf,            
             TreIdf,
+            TreTipo,
             TreData,
             TreTitulo,
             TreResponsavel,

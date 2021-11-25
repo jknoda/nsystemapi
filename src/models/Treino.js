@@ -13,6 +13,12 @@ class Treino extends Model {
                 primaryKey: true,
                 allowNull: false
             },
+            TreTipo: {
+                type: DataTypes.STRING(1),
+                primaryKey: false,
+                allowNull: false,
+                defaultValue: 'T'
+            },
             TreData: {
                 type: DataTypes.DATE,
                 allowNull: false
