@@ -19,7 +19,9 @@ module.exports = {
             AluPeso,
             AluAltura,
             AluStatus,
-            UsuIdf } = req.body;
+            UsuIdf,
+            AluTPri,
+            AluImg } = req.body;
         const DataInc = new Date();
         const DataAlt = new Date();
         var AluIdf = 0;
@@ -51,6 +53,8 @@ module.exports = {
                 AluAltura,
                 AluStatus,
                 UsuIdf,
+                AluTPri,
+                AluImg,
                 DataInc,
                 DataAlt})
             .then(()=>{
@@ -100,7 +104,9 @@ module.exports = {
             AluPeso,
             AluAltura,
             AluStatus,
-            UsuIdf  } = req.body;
+            UsuIdf,
+            AluTPri,
+            AluImg  } = req.body;
         const DataAlt = new Date();
         await Aluno.update(
         {
@@ -120,6 +126,8 @@ module.exports = {
             AluAltura,
             AluStatus,
             UsuIdf,
+            AluTPri,
+            AluImg,
             DataAlt
         },
         {
