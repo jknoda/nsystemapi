@@ -15,8 +15,10 @@ module.exports = function (server) {
     const AlunoController = require('../controllers/AlunoController');
     api.post('/aluno/create', AlunoController.create);
     api.post('/aluno/findall', AlunoController.findall);
+    api.post('/aluno/findallstatus', AlunoController.findallstatus);
     api.post('/aluno/find', AlunoController.find);
     api.post('/aluno/update', AlunoController.update);
+    api.post('/aluno/status', AlunoController.status);
     api.post('/aluno/delete', AlunoController.delete);
 
     const AtividadeController = require('../controllers/AtividadeController');

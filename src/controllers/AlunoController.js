@@ -86,6 +86,20 @@ module.exports = {
         return res.json(retorno);
     },
 
+    async findallstatus(req,res){
+        const {EmpIdf,AluStatus} = req.body;
+        const retorno = await Aluno.findAll({
+            where : {
+                EmpIdf,
+                AluStatus
+            },
+            order: ['AluNome']
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno);
+    },
+
     async update(req,res){
         const {EmpIdf,
             AluIdf,
@@ -141,6 +155,29 @@ module.exports = {
             return errDB(res,err);
         });
     },
+
+    async status(req,res){
+        const {EmpIdf,
+            AluIdf,
+            AluStatus} = req.body;
+        const DataAlt = new Date();
+        await Aluno.update(
+        {
+            AluStatus,
+            DataAlt
+        },
+        {
+            where: {
+                EmpIdf: EmpIdf,
+                AluIdf: AluIdf
+            }            
+        }).then((data)=>{
+                return res.json(AluIdf);
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+    },
+
 
     async delete(req,res){
         const {EmpIdf, AluIdf} = req.body;

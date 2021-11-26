@@ -6,7 +6,8 @@ module.exports = {
     async findMonthYear(req,res){
         const {EmpIdf, mes, ano} = req.body;
         var sql = `
-            SELECT treino.EmpIdf ,treino.TreIdf,treino.TreData, treino.TreTitulo, treinoatv.AtvIdf, treinoatv.TreAtvDesc
+            SELECT treino.EmpIdf ,treino.TreIdf,treino.TreData, treino.TreTitulo, treino.TreResponsavel,
+              treinoatv.AtvIdf, treinoatv.TreAtvDesc, treinoatv.TreAtvMin
             FROM treino  
             LEFT JOIN treinoatv
             ON treino.EmpIdf = treinoatv.EmpIdf AND treino.TreIdf = treinoatv.TreIdf
@@ -64,11 +65,11 @@ module.exports = {
             });
             if (existing.length) {
               var existingIndex = output.indexOf(existing[0]);
-              var itemAux = item.AtvIdf.toString() + "@@" + item.TreAtvDesc;
+              var itemAux = item.AtvIdf.toString() + "@@" + item.TreAtvDesc + "@@" + item.TreAtvMin.toString();
               output[existingIndex].TreAtvDesc = output[existingIndex].TreAtvDesc.concat(itemAux);
             } else {
               if (typeof item.TreAtvDesc == 'string'){
-                var itemAux = item.AtvIdf.toString() + "@@" + item.TreAtvDesc;
+                var itemAux = item.AtvIdf.toString() + "@@" + item.TreAtvDesc + "@@" + item.TreAtvMin.toString();
                 item.TreAtvDesc = [itemAux];
               }
               output.push(item);
