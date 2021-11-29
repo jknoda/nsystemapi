@@ -1,5 +1,7 @@
 const errDB = require('../common/_sendErrorsDB');
 const Treino = require('../models/Treino')
+const TreinoAlu = require('../models/TreinoAlu')
+const TreinoAtv = require('../models/TreinoAtv')
 
 module.exports = {
     async create(req,res){
@@ -99,5 +101,28 @@ module.exports = {
             return errDB(res,err);
         });
         return res.json(retorno);
+    },
+
+    async deletetreino(req,res){
+        const {EmpIdf, TreIdf} = req.body;
+
+        await TreinoAlu.destroy({
+            where : {EmpIdf, TreIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+
+        await TreinoAtv.destroy({
+            where : {EmpIdf, TreIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+
+        await Treino.destroy({
+            where : {EmpIdf, TreIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json("OK");
     }
 }

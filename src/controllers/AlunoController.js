@@ -1,5 +1,6 @@
 const errDB = require('../common/_sendErrorsDB');
-const Aluno = require('../models/Aluno')
+const Aluno = require('../models/Aluno');
+const Anamnese = require('../models/Anamnese');
 
 module.exports = {
     async create(req,res){
@@ -178,7 +179,6 @@ module.exports = {
         });
     },
 
-
     async delete(req,res){
         const {EmpIdf, AluIdf} = req.body;
         const retorno = await Aluno.destroy({
@@ -187,6 +187,21 @@ module.exports = {
             return errDB(res,err);
         });
         return res.json(retorno);
+    },
+
+    async deletealuno(req,res){
+        const {EmpIdf, AluIdf} = req.body;
+        await Anamnese.destroy({
+            where : {EmpIdf, AluIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        await Aluno.destroy({
+            where : {EmpIdf, AluIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json("OK");
     }
 
 }

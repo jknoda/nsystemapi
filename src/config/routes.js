@@ -20,6 +20,8 @@ module.exports = function (server) {
     api.post('/aluno/update', AlunoController.update);
     api.post('/aluno/status', AlunoController.status);
     api.post('/aluno/delete', AlunoController.delete);
+    api.post('/aluno/deletealuno', AlunoController.deletealuno);
+
 
     const AtividadeController = require('../controllers/AtividadeController');
     api.post('/atividade/create', AtividadeController.create);
@@ -34,6 +36,7 @@ module.exports = function (server) {
     api.post('/treino/find', TreinoController.find);
     api.post('/treino/update', TreinoController.update);
     api.post('/treino/delete', TreinoController.delete);
+    api.post('/treino/deletetreino', TreinoController.deletetreino);
 
     const TreinoAtvController = require('../controllers/TreinoAtvController');
     api.post('/treinoAtv/create', TreinoAtvController.create);
