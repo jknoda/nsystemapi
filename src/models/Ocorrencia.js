@@ -13,15 +13,14 @@ class Ocorrencia extends Model {
                 primaryKey: true,
                 allowNull: false
             },
-            TreAtvItem: {
-                type: DataTypes.INTEGER,
-                primaryKey: true,
-                allowNull: false
-            },
             OcoIdf: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 allowNull: false
+            },
+            AluIdf: {
+                type: DataTypes.INTEGER,
+                allowNull: true
             },
             OcoTipo: {
                 type: DataTypes.STRING(1),

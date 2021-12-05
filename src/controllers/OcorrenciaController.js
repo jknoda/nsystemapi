@@ -5,8 +5,8 @@ module.exports = {
     async create(req,res){
         const {EmpIdf,
             TreIdf,
-            TreAtvItem,
             OcoTipo,
+            AluIdf,
             OcoDescricao,
             UsuIdf } = req.body;
         const DataInc = new Date();
@@ -16,8 +16,7 @@ module.exports = {
             attributes: ['OcoIdf'],
             where: {
                 EmpIdf:EmpIdf,
-                TreIdf:TreIdf,
-                TreAtvItem:TreAtvItem
+                TreIdf:TreIdf
             },
             order: [
                 [ 'OcoIdf', 'DESC' ],
@@ -30,9 +29,9 @@ module.exports = {
             OcoIdf++;
             Ocorrencia.create({EmpIdf,
                 TreIdf,
-                TreAtvItem,
                 OcoIdf,
                 OcoTipo,
+                AluIdf,
                 OcoDescricao,
                 UsuIdf,
                 DataInc,
@@ -46,9 +45,29 @@ module.exports = {
     },
 
     async find(req,res){
-        const {EmpIdf, TreIdf, TreAtvItem, OcoIdf} = req.body;
+        const {EmpIdf, TreIdf} = req.body;
         const retorno = await Ocorrencia.findOne({
-            where : {EmpIdf, TreIdf, TreAtvItem, OcoIdf}
+            where : {EmpIdf, TreIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno);
+    },
+
+    async findalutre(req,res){
+        const {EmpIdf, TreIdf} = req.body;
+        const retorno = await Ocorrencia.findall({
+            where : {EmpIdf, TreIdf}
+         }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno);
+    },
+
+    async findaluall(req,res){
+        const {EmpIdf, AluIdf} = req.body;
+        const retorno = await Ocorrencia.findall({
+            where : {EmpIdf, AluIdf}
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -56,9 +75,9 @@ module.exports = {
     },
 
     async findall(req,res){
-        const {EmpIdf, TreIdf, TreAtvItem} = req.body;
+        const {EmpIdf, TreIdf, AluIdf} = req.body;
         var retorno = await Ocorrencia.findAll({
-            where : {EmpIdf, TreIdf, TreAtvItem}
+            where : {EmpIdf, TreIdf, AluIdf}
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -68,9 +87,9 @@ module.exports = {
     async update(req,res){
         const {EmpIdf,
             TreIdf,
-            TreAtvItem,
             OcoIdf,
             OcoTipo,
+            AluIdf,
             OcoDescricao,
             UsuIdf } = req.body;
         const DataAlt = new Date();
@@ -78,8 +97,8 @@ module.exports = {
         {
             EmpIdf,
             TreIdf,
-            TreAtvItem,
             OcoIdf,
+            AluIdf,
             OcoTipo,
             OcoDescricao,
             UsuIdf,
@@ -89,25 +108,20 @@ module.exports = {
             where: {
                 EmpIdf: EmpIdf,
                 TreIdf:TreIdf,
-                TreAtvItem:TreAtvItem,
                 OcoIdf:OcoIdf
-            }            
+            }
         }).then(()=>{
-                return res.json({TreIdf,TreAtvItem,OcoIdf});
+            return res.json({TreIdft});
         }).catch(function(err){
             return errDB(res,err);
-        });
+        });        
     },
 
     async delete(req,res){
-        const {EmpIdf,
-            TreIdf,
-            TreAtvItem,
-            OcoIdf} = req.body;
+        const {EmpIdf, TreIdf, OcoIdf} = req.body;
         const retorno = await Ocorrencia.destroy({
             where : {EmpIdf,
                 TreIdf,
-                TreAtvItem,
                 OcoIdf}
         }).catch(function(err){
             return errDB(res,err);

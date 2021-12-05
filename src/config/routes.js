@@ -98,6 +98,9 @@ module.exports = function (server) {
     api.post('/ocorrencia/update', OcorrenciaController.update);
     api.post('/ocorrencia/delete', OcorrenciaController.delete);
 
+    api.post('/ocorrencia/findalutre', OcorrenciaController.findalutre);
+    api.post('/ocorrencia/findaluall', OcorrenciaController.findaluall);
+
     /*
     /*
     * API Públicas - rotas abertas
