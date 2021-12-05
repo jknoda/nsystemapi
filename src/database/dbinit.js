@@ -35,5 +35,10 @@ Mensagem.init(connection);
 const Configuracao = require('../models/Configuracao');
 Configuracao.init(connection);
 
+const OcoTipo = require('../models/OcoTipo');
+OcoTipo.init(connection);
+
+const Ocorrencia = require('../models/Ocorrencia');
+Ocorrencia.init(connection);
 
 module.exports = connection;

@@ -84,6 +84,20 @@ module.exports = function (server) {
     api.post('/configuracao/update', ConfiguracaoController.update);
     api.post('/configuracao/delete', ConfiguracaoController.delete);
 
+    const OcotipoController = require('../controllers/OcotipoController');
+    api.post('/ocotipo/create', OcotipoController.create);
+    api.post('/ocotipo/findall', OcotipoController.findall);
+    api.post('/ocotipo/find', OcotipoController.find);
+    api.post('/ocotipo/update', OcotipoController.update);
+    api.post('/ocotipo/delete', OcotipoController.delete);
+
+    const OcorrenciaController = require('../controllers/OcorrenciaController');
+    api.post('/ocorrencia/create', OcorrenciaController.create);
+    api.post('/ocorrencia/findall', OcorrenciaController.findall);
+    api.post('/ocorrencia/find', OcorrenciaController.find);
+    api.post('/ocorrencia/update', OcorrenciaController.update);
+    api.post('/ocorrencia/delete', OcorrenciaController.delete);
+
     /*
     /*
     * API Públicas - rotas abertas
