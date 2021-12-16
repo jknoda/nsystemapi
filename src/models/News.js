@@ -37,8 +37,8 @@ class News extends Model {
                 type: DataTypes.DATE,
                 allowNull: false
             },
-            UsuIdf: {
-                type: DataTypes.NUMBER,
+            NewsAutor: {
+                type: DataTypes.STRING(100),
                 allowNull: true
             }
         }, {
