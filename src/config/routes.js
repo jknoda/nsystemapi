@@ -101,6 +101,13 @@ module.exports = function (server) {
     api.post('/ocorrencia/findalutre', OcorrenciaController.findalutre);
     api.post('/ocorrencia/findaluall', OcorrenciaController.findaluall);
 
+    const NewsController = require('../controllers/NewsController');
+    api.post('/news/create', NewsController.create);
+    api.post('/news/findall', NewsController.findall);
+    api.post('/news/find', NewsController.find);
+    api.post('/news/update', NewsController.update);
+    api.post('/news/delete', NewsController.delete);
+
     /*
     /*
     * API Públicas - rotas abertas

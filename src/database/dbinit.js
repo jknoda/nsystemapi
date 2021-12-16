@@ -41,4 +41,7 @@ OcoTipo.init(connection);
 const Ocorrencia = require('../models/Ocorrencia');
 Ocorrencia.init(connection);
 
+const News = require('../models/News');
+News.init(connection);
+
 module.exports = connection;
