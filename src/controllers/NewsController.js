@@ -59,6 +59,16 @@ module.exports = {
         return res.json(retorno);
     },
 
+    async getfindall(req,res){
+        var EmpIdf = req.query.empidf;
+        const retorno = await News.findAll({
+            where : {EmpIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno);
+    },
+
     async update(req,res){
         const {EmpIdf,
             NewsIdf,

@@ -102,8 +102,9 @@ module.exports = function (server) {
     api.post('/ocorrencia/findaluall', OcorrenciaController.findaluall);
 
     const NewsController = require('../controllers/NewsController');
+    api.get('/news/getfindall', NewsController.getfindall);
     api.post('/news/create', NewsController.create);
-    api.post('/news/findall', NewsController.findall);
+    api.post('/news/findall', NewsController.findall);    
     api.post('/news/find', NewsController.find);
     api.post('/news/update', NewsController.update);
     api.post('/news/delete', NewsController.delete);
