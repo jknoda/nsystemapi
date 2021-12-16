@@ -52,7 +52,10 @@ module.exports = {
     async findall(req,res){
         const {EmpIdf} = req.body;
         const retorno = await News.findAll({
-            where : {EmpIdf}
+            where : {EmpIdf},
+            order: [
+                [ 'NewsData', 'DESC' ],
+            ]
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -62,7 +65,11 @@ module.exports = {
     async getfindall(req,res){
         var EmpIdf = req.query.empidf;
         const retorno = await News.findAll({
-            where : {EmpIdf}
+            where : {EmpIdf},
+            order: [
+                [ 'NewsData', 'DESC' ],
+            ],
+            limit: 10
         }).catch(function(err){
             return errDB(res,err);
         });
