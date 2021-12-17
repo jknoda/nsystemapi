@@ -109,6 +109,9 @@ module.exports = function (server) {
     api.post('/news/update', NewsController.update);
     api.post('/news/delete', NewsController.delete);
 
+    const AcessoController = require('../controllers/AcessoController');
+    api.post('/acesso/create', AcessoController.create);
+
     /*
     /*
     * API Públicas - rotas abertas

@@ -44,4 +44,8 @@ Ocorrencia.init(connection);
 const News = require('../models/News');
 News.init(connection);
 
+const Acesso = require('../models/Acesso');
+Acesso.init(connection);
+
+
 module.exports = connection;
