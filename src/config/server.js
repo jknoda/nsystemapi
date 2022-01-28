@@ -6,7 +6,7 @@ const server = express()
 const allowCors = require('./cors')
 const queryParser = require('express-query-int')
 
-server.use(express.json())
+server.use(express.json({limit: '50mb'}))
 server.use(express.urlencoded({extended:true}))
 server.use(allowCors)
 server.use(queryParser())

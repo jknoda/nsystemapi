@@ -10,7 +10,9 @@ module.exports = {
             NewsTitulo,
             NewsTexto,
             NewsData,
-            NewsAutor } = req.body;
+            NewsAutor,
+            NewsImageFile,
+            NewsImage } = req.body;
         var NewsIdf = 0;
         await News.findOne({
             attributes: ['NewsIdf'],
@@ -30,7 +32,9 @@ module.exports = {
                 NewsTitulo,
                 NewsTexto,
                 NewsData,
-                NewsAutor})
+                NewsAutor,
+                NewsImageFile,
+                NewsImage})
             .then(()=>{
                 return res.json(NewsIdf);
             }).catch(function(err){
@@ -85,7 +89,9 @@ module.exports = {
             NewsTitulo,
             NewsTexto,
             NewsData,
-            NewsAutor } = req.body;
+            NewsAutor,
+            NewsImageFile,
+            NewsImage } = req.body;
         await News.update(
         { NewsArq,
           NewsExt,
@@ -93,7 +99,9 @@ module.exports = {
           NewsTitulo,
           NewsTexto,
           NewsData,
-          NewsAutor
+          NewsAutor,
+          NewsImageFile,
+          NewsImage
         },
         {
             where: {

@@ -40,7 +40,16 @@ class News extends Model {
             NewsAutor: {
                 type: DataTypes.STRING(100),
                 allowNull: true
+            },
+            NewsImageFile: {
+                type: DataTypes.STRING(255),
+                allowNull: true
+            },
+            NewsImage: {
+                type: DataTypes.BLOB,
+                allowNull: true
             }
+
         }, {
             sequelize,
             tableName: 'news'
