@@ -1,22 +1,47 @@
 const errDB = require('../common/_sendErrorsDB');
 const nodemailer = require('nodemailer');
+const Configuracao = require('../models/Configuracao');
+
 
 module.exports = {
-    enviar(req,res){
+    async enviar(req,res){
         const {service, user, pass, from, to, cc, subject, text, html} = req.body;
+        let serviceAux = service;
+        let userAux = user;
+        let passAux = pass;
+        let fromAux = from;
+        let toAux = to;
+        if (!service)
+        {
+            let EmpIdf = 1;
+            let CfgIdfArray = [10,11,12,13,14];
+            let retorno = await Configuracao.findAll({
+                where : {
+                    EmpIdf,
+                    CfgIdf: CfgIdfArray
+                }
+                }).catch(function(err){
+                    return errDB(res,err);
+            });            
+            serviceAux = retorno[0].CfgVlrStr;
+            userAux = retorno[1].CfgVlrStr;
+            passAux = retorno[2].CfgVlrStr;
+            fromAux = retorno[3].CfgVlrStr;
+            toAux = retorno[4].CfgVlrStr;
+        }
         const  transporter = nodemailer.createTransport({
-            service: service,
+            service: serviceAux,
             auth: {
-                user: user,
-                pass: pass,
+                user: userAux,
+                pass: passAux,
             },
             tls: {
                 rejectUnauthorized: false
             }
         });
         const email = {
-            from: from,
-            to: to,
+            from: fromAux,
+            to: toAux,
             cc: cc,
             subject: subject,
             text: text,
@@ -29,4 +54,5 @@ module.exports = {
             return res.json('OK');
         });
     }
+
 }
