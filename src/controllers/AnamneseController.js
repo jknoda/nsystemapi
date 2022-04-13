@@ -24,6 +24,8 @@ module.exports = {
             AnaCirurgia,
             AnaOsseo,
             AnaFratura,
+            AnaCns6,
+            AnaTratamento,
             AnaStatus } = req.body;
         const DataInc = new Date();
         const DataAlt = new Date();
@@ -60,6 +62,8 @@ module.exports = {
                 AnaCirurgia,
                 AnaOsseo,
                 AnaFratura,
+                AnaCns6,
+                AnaTratamento,
                 AnaStatus,
                 DataInc,
                 DataAlt})
@@ -138,6 +142,8 @@ module.exports = {
             AnaCirurgia,
             AnaOsseo,
             AnaFratura,
+            AnaCns6,
+            AnaTratamento,
             AnaStatus  } = req.body;
         const DataAlt = new Date();
         await Anamnese.update(
@@ -161,6 +167,8 @@ module.exports = {
             AnaCirurgia,
             AnaOsseo,
             AnaFratura,
+            AnaCns6,
+            AnaTratamento,
             AnaStatus,
             DataAlt
         },

@@ -67,7 +67,7 @@ class Anamnese extends Model {
                 allowNull: true
             },
             AnaAlergia: {
-                type: DataTypes.STRING(100),
+                type: DataTypes.STRING(200),
                 allowNull: true
             },
             AnaDepressao: {
@@ -79,15 +79,23 @@ class Anamnese extends Model {
                 allowNull: true
             },
             AnaMedicamentos: {
-                type: DataTypes.STRING(100),
+                type: DataTypes.STRING(200),
                 allowNull: true
             },
             AnaCirurgia: {
-                type: DataTypes.STRING(100),
+                type: DataTypes.STRING(200),
                 allowNull: true
             },
             AnaOsseo: {
-                type: DataTypes.STRING(100),
+                type: DataTypes.STRING(200),
+                allowNull: true
+            },
+            AnaCns6: {
+                type: DataTypes.CHAR,
+                allowNull: true
+            },
+            AnaTratamento: {
+                type: DataTypes.STRING(200),
                 allowNull: true
             },
             AnaStatus: {
