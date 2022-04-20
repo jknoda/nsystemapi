@@ -106,11 +106,21 @@ module.exports = {
 
     async findallresp(req,res){
         const {EmpIdf,AluStatus,UsuIdf} = req.body;
+        let usuIni = UsuIdf;
+        let usuFim = UsuIdf;
+        if (UsuIdf == 0)
+        {
+            usuIni = 0;
+            usuFim = 99999999990;
+        }
         const retorno = await Aluno.findAll({
             where : {
                 EmpIdf,
                 AluStatus,
-                [Op.or]: [{ UsuIdf: UsuIdf }, { UsuIdf: 0 }]
+                UsuIdf: {
+                    [Op.gte]: usuIni,
+                    [Op.lte]: usuFim
+                  }
             },
             order: ['AluNome']
         }).catch(function(err){
