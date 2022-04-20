@@ -1,6 +1,7 @@
 const errDB = require('../common/_sendErrorsDB');
 const Aluno = require('../models/Aluno');
 const Anamnese = require('../models/Anamnese');
+const { Op } = require("sequelize");
 
 module.exports = {
     async create(req,res){
@@ -95,6 +96,21 @@ module.exports = {
             where : {
                 EmpIdf,
                 AluStatus
+            },
+            order: ['AluNome']
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno);
+    },
+
+    async findallresp(req,res){
+        const {EmpIdf,AluStatus,UsuIdf} = req.body;
+        const retorno = await Aluno.findAll({
+            where : {
+                EmpIdf,
+                AluStatus,
+                [Op.or]: [{ UsuIdf: UsuIdf }, { UsuIdf: 0 }]
             },
             order: ['AluNome']
         }).catch(function(err){

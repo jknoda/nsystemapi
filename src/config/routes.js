@@ -17,6 +17,7 @@ module.exports = function (server) {
     api.post('/aluno/findall', AlunoController.findall);
     api.post('/aluno/findallstatus', AlunoController.findallstatus);
     api.post('/aluno/find', AlunoController.find);
+    api.post('/aluno/findallresp', AlunoController.findallresp);
     api.post('/aluno/update', AlunoController.update);
     api.post('/aluno/status', AlunoController.status);
     api.post('/aluno/delete', AlunoController.delete);
@@ -33,6 +34,7 @@ module.exports = function (server) {
     const TreinoController = require('../controllers/TreinoController');
     api.post('/treino/create', TreinoController.create);
     api.post('/treino/findall', TreinoController.findall);
+    api.post('/treino/findalldate', TreinoController.findalldate);
     api.post('/treino/find', TreinoController.find);
     api.post('/treino/update', TreinoController.update);
     api.post('/treino/delete', TreinoController.delete);

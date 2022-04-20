@@ -2,6 +2,7 @@ const errDB = require('../common/_sendErrorsDB');
 const Treino = require('../models/Treino')
 const TreinoAlu = require('../models/TreinoAlu')
 const TreinoAtv = require('../models/TreinoAtv')
+const { Op } = require("sequelize");
 
 module.exports = {
     async create(req,res){
@@ -55,6 +56,25 @@ module.exports = {
         const {EmpIdf} = req.body;
         const retorno = await Treino.findAll({
             where : {EmpIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno);
+    },
+
+    async findalldate(req,res){
+        const {EmpIdf, TreData} = req.body;
+        let data = new Date(TreData);
+        let dataIn = data.setHours(0,0,0);
+        let dataFi = data.setHours(23,59,59);
+        const retorno = await Treino.findAll({
+            where : {
+                EmpIdf, 
+                TreData: {
+                    [Op.gte]: dataIn,
+                    [Op.lte]: dataFi
+                  }
+            }
         }).catch(function(err){
             return errDB(res,err);
         });
