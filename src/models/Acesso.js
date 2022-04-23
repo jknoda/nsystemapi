@@ -31,6 +31,7 @@ class Acesso extends Model {
         }, {
             sequelize,
             tableName: 'acesso'
+
         })
     }
 }
