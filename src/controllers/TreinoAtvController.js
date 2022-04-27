@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const TreinoAtv = require('../models/TreinoAtv')
 
 module.exports = {
@@ -36,6 +37,13 @@ module.exports = {
                 DataInc,
                 DataAlt})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'treinoatv',
+                    dado:JSON.stringify(req.body)
+                });                
                 return res.json(TreAtvItem);
             }).catch(function(err){
                 return errDB(res,err);
@@ -105,7 +113,14 @@ module.exports = {
                 TreAtvItem: TreAtvItem
             }            
         }).then((data)=>{
-                return res.json(TreAtvItem);
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'treinoatv',
+                dado:JSON.stringify(req.body)
+            });                
+            return res.json(TreAtvItem);
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -118,6 +133,13 @@ module.exports = {
         }).catch(function(err){
             return errDB(res,err);
         });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'treinoatv',
+            dado:JSON.stringify(req.body)
+        });                
         return res.json(retorno);
     }
 }

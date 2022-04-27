@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Treino = require('../models/Treino')
 const TreinoAlu = require('../models/TreinoAlu')
 const TreinoAtv = require('../models/TreinoAtv')
@@ -35,6 +36,13 @@ module.exports = {
                 DataInc,
                 DataAlt})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'treino',
+                    dado:JSON.stringify(req.body)
+                });                
                 return res.json(TreIdf);
             }).catch(function(err){
                 return errDB(res,err);
@@ -107,7 +115,14 @@ module.exports = {
                 TreIdf: TreIdf
             }            
         }).then((data)=>{
-                return res.json(TreIdf);
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'treino',
+                dado:JSON.stringify(req.body)
+            });                
+            return res.json(TreIdf);
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -120,6 +135,13 @@ module.exports = {
         }).catch(function(err){
             return errDB(res,err);
         });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'treino',
+            dado:JSON.stringify(req.body)
+        });                
         return res.json(retorno);
     },
 
@@ -143,6 +165,13 @@ module.exports = {
         }).catch(function(err){
             return errDB(res,err);
         });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'treinoalu/treinoatv/treino',
+            dado:JSON.stringify(req.body)
+        });                
         return res.json("OK");
     }
 }

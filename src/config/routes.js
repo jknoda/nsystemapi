@@ -114,6 +114,9 @@ module.exports = function (server) {
     const AcessoController = require('../controllers/AcessoController');
     api.post('/acesso/create', AcessoController.create);
 
+    const LogdataController = require('../controllers/LogdataController');
+    api.post('/logdata/create', LogdataController.create);
+
     /*
     /*
     * API Públicas - rotas abertas

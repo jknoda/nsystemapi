@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Ocorrencia = require('../models/Ocorrencia')
 
 module.exports = {
@@ -37,6 +38,13 @@ module.exports = {
                 DataInc,
                 DataAlt})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'ocorrencia',
+                    dado:JSON.stringify(req.body)
+                });                
                 return res.json(OcoIdf);
             }).catch(function(err){
                 return errDB(res,err);
@@ -111,6 +119,13 @@ module.exports = {
                 OcoIdf:OcoIdf
             }
         }).then(()=>{
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'ocorrencia',
+                dado:JSON.stringify(req.body)
+            });                
             return res.json({TreIdft});
         }).catch(function(err){
             return errDB(res,err);
@@ -126,6 +141,13 @@ module.exports = {
         }).catch(function(err){
             return errDB(res,err);
         });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'ocorrencia',
+            dado:JSON.stringify(req.body)
+        });                
         return res.json(retorno);
     }
 

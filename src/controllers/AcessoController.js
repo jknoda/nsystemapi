@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Acesso = require('../models/Acesso')
 
 module.exports = {
@@ -25,6 +26,13 @@ module.exports = {
                 Origem,
                 UsuIdf})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'acesso',
+                    dado:JSON.stringify(req.body)
+                });
                 return res.json(Idf);
             }).catch(function(err){
                 return errDB(res,err);

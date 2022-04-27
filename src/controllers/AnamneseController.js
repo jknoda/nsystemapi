@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Anamnese = require('../models/Anamnese')
 
 module.exports = {
@@ -68,6 +69,13 @@ module.exports = {
                 DataInc,
                 DataAlt})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'anamnese',
+                    dado:JSON.stringify(req.body)
+                });
                 return res.json(AnaIdf);
             }).catch(function(err){
                 return errDB(res,err);
@@ -179,7 +187,14 @@ module.exports = {
                 AnaIdf: AnaIdf
             }            
         }).then((data)=>{
-                return res.json(AnaIdf);
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'anamnese',
+                dado:JSON.stringify(req.body)
+            });
+            return res.json(AnaIdf);
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -191,6 +206,13 @@ module.exports = {
             where : {EmpIdf, AluIdf, AnaIdf}
         }).catch(function(err){
             return errDB(res,err);
+        });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'anamnese',
+            dado:JSON.stringify(req.body)
         });
         return res.json(retorno);
     }

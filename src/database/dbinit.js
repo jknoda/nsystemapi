@@ -54,5 +54,8 @@ News.init(connection);
 const Acesso = require('../models/Acesso');
 Acesso.init(connection);
 
+const Logdata = require('../models/Logdata');
+Logdata.init(connection);
+
 
 module.exports = connection;

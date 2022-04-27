@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const News = require('../models/News');
 
 module.exports = {
@@ -36,6 +37,15 @@ module.exports = {
                 NewsImageFile,
                 NewsImage})
             .then(()=>{
+                let aux = req.body;
+                delete aux.NewsImage;
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'news',
+                    dado:JSON.stringify(aux)
+                });
                 return res.json(NewsIdf);
             }).catch(function(err){
                 return errDB(res,err);
@@ -109,7 +119,16 @@ module.exports = {
                 NewsIdf: NewsIdf
             }            
         }).then((data)=>{
-                return res.json(NewsIdf);
+            let aux = req.body;
+            delete aux.NewsImage;
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'news',
+                dado:JSON.stringify(aux)
+            });
+            return res.json(NewsIdf);
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -121,6 +140,13 @@ module.exports = {
             where : {EmpIdf, NewsIdf}
         }).catch(function(err){
             return errDB(res,err);
+        });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'news',
+            dado:JSON.stringify(req.body)
         });
         return res.json(retorno);
     }

@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Ocotipo = require('../models/OcoTipo')
 
 module.exports = {
@@ -10,6 +11,13 @@ module.exports = {
             OcoTipo,
             OcoTipDes})
         .then(()=>{
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'add',
+                tabela:'ocotipo',
+                dado:JSON.stringify(req.body)
+            });                
             return res.json(OcoTipo);
         }).catch(function(err){
             return errDB(res,err);
@@ -52,7 +60,14 @@ module.exports = {
                 OcoTipo: OcoTipo
             }            
         }).then(()=>{
-                return res.json({OcoTipo});
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'ocotipo',
+                dado:JSON.stringify(req.body)
+            });                
+            return res.json({OcoTipo});
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -65,6 +80,13 @@ module.exports = {
         }).catch(function(err){
             return errDB(res,err);
         });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'ocotipo',
+            dado:JSON.stringify(req.body)
+        });                
         return res.json(retorno);
     }
 

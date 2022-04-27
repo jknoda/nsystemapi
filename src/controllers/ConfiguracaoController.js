@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Configuracao = require('../models/Configuracao')
 
 module.exports = {
@@ -30,6 +31,13 @@ module.exports = {
                 DataInc,
                 DataAlt})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'configuracao',
+                    dado:JSON.stringify(req.body)
+                });
                 return res.json(CfgIdf);
             }).catch(function(err){
                 return errDB(res,err);
@@ -94,7 +102,14 @@ module.exports = {
                 CfgIdf: CfgIdf
             }            
         }).then((data)=>{
-                return res.json(CfgIdf);
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'configuracao',
+                dado:JSON.stringify(req.body)
+            });
+            return res.json(CfgIdf);
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -106,6 +121,13 @@ module.exports = {
             where : {EmpIdf, CfgIdf}
         }).catch(function(err){
             return errDB(res,err);
+        });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'configuracao',
+            dado:JSON.stringify(req.body)
         });
         return res.json(retorno);
     }

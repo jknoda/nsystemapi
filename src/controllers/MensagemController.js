@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Mensagem = require('../models/Mensagem')
 
 module.exports = {
@@ -36,6 +37,13 @@ module.exports = {
                 DataInc,
                 DataAlt})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'mensagem',
+                    dado:JSON.stringify(req.body)
+                });
                 return res.json(MsgIdf);
             }).catch(function(err){
                 return errDB(res,err);
@@ -78,6 +86,13 @@ module.exports = {
                 DataInc,
                 DataAlt})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'mensagem resp',
+                    dado:JSON.stringify(req.body)
+                });
                 return res.json({MsgIdf,MsgIdfIt});
             }).catch(function(err){
                 return errDB(res,err);
@@ -166,7 +181,14 @@ module.exports = {
                 MsgIdfIt: MsgIdfIt
             }            
         }).then((data)=>{
-                return res.json({MsgIdf,MsgIdfIt});
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'mensagem',
+                dado:JSON.stringify(req.body)
+            });
+            return res.json({MsgIdf,MsgIdfIt});
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -178,6 +200,13 @@ module.exports = {
             where : {EmpIdf, MsgIdf, MsgIdfIt}
         }).catch(function(err){
             return errDB(res,err);
+        });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'mensagem',
+            dado:JSON.stringify(req.body)
         });
         return res.json(retorno);
     }

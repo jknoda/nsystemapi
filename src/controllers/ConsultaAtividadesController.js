@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const ConsultaAtividades = require('../models/ConsultaAtividades')
 const sequelize = require("sequelize");
 

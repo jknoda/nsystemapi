@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const nodemailer = require('nodemailer');
 const Configuracao = require('../models/Configuracao');
 

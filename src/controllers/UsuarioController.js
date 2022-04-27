@@ -1,4 +1,5 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Usuario = require('../models/Usuario')
 
 module.exports = {
@@ -21,6 +22,13 @@ module.exports = {
             Usuario.create({EmpIdf, UsuIdf, UsuEmail, UsuNome, 
                 UsuCPF, UsuPerfil, DataInc, DataAlt})
             .then(()=>{
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'usuario',
+                    dado:JSON.stringify(req.body)
+                });                
                 return res.json(UsuIdf);
             }).catch(function(err){
                 return errDB(res,err);
@@ -73,7 +81,14 @@ module.exports = {
                 UsuIdf: UsuIdf
             }            
         }).then((data)=>{
-                return res.json(UsuIdf);
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'usuario',
+                dado:JSON.stringify(req.body)
+            });                
+            return res.json(UsuIdf);
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -86,6 +101,13 @@ module.exports = {
         }).catch(function(err){
             return errDB(res,err);
         });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'usuario',
+            dado:JSON.stringify(req.body)
+        });                
         return res.json(retorno);
     }
 

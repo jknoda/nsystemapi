@@ -1,7 +1,9 @@
 const errDB = require('../common/_sendErrorsDB');
+const logDB = require('../common/_logDB');
 const Aluno = require('../models/Aluno');
 const Anamnese = require('../models/Anamnese');
 const { Op } = require("sequelize");
+const { json } = require('express/lib/response');
 
 module.exports = {
     async create(req,res){
@@ -62,6 +64,15 @@ module.exports = {
                 DataInc,
                 DataAlt})
             .then(()=>{
+                let aux = req.body;
+                delete aux.AluFoto;
+                logDB({
+                    idf:0,
+                    usuidf:req.query.useridf,
+                    operacao:'add',
+                    tabela:'aluno',
+                    dado:JSON.stringify(aux)
+                });
                 return res.json(AluIdf);
             }).catch(function(err){
                 return errDB(res,err);
@@ -181,7 +192,16 @@ module.exports = {
                 AluIdf: AluIdf
             }            
         }).then((data)=>{
-                return res.json(AluIdf);
+            let aux = req.body;
+            delete aux.AluFoto;
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update',
+                tabela:'aluno',
+                dado:JSON.stringify(aux)
+            });
+            return res.json(AluIdf);
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -203,7 +223,14 @@ module.exports = {
                 AluIdf: AluIdf
             }            
         }).then((data)=>{
-                return res.json(AluIdf);
+            logDB({
+                idf:0,
+                usuidf:req.query.useridf,
+                operacao:'update status',
+                tabela:'aluno',
+                dado:JSON.stringify(req.body)
+            });
+            return res.json(AluIdf);
         }).catch(function(err){
             return errDB(res,err);
         });
@@ -215,6 +242,13 @@ module.exports = {
             where : {EmpIdf, AluIdf}
         }).catch(function(err){
             return errDB(res,err);
+        });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'aluno',
+            dado:JSON.stringify(req.body)
         });
         return res.json(retorno);
     },
@@ -231,6 +265,13 @@ module.exports = {
         }).catch(function(err){
             return errDB(res,err);
         });
+        logDB({
+            idf:0,
+            usuidf:req.query.useridf,
+            operacao:'delete',
+            tabela:'aluno/anamnese',
+            dado:JSON.stringify(req.body)
+        });        
         return res.json("OK");
     }
 
