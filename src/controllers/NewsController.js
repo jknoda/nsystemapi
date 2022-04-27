@@ -66,6 +66,7 @@ module.exports = {
     async findall(req,res){
         const {EmpIdf} = req.body;
         const retorno = await News.findAll({
+            attributes: {exclude: ['NewsImage']},
             where : {EmpIdf},
             order: [
                 [ 'NewsData', 'DESC' ],
@@ -79,6 +80,7 @@ module.exports = {
     async getfindall(req,res){
         var EmpIdf = req.query.empidf;
         const retorno = await News.findAll({
+            attributes: {exclude: ['NewsImage']},
             where : {EmpIdf},
             order: [
                 [ 'NewsData', 'DESC' ],

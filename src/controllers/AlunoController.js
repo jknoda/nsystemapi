@@ -93,6 +93,7 @@ module.exports = {
     async findall(req,res){
         const {EmpIdf} = req.body;
         const retorno = await Aluno.findAll({
+            attributes: {exclude: ['AluFoto']},
             where : {EmpIdf},
             order: ['AluNome']
         }).catch(function(err){
@@ -104,6 +105,7 @@ module.exports = {
     async findallstatus(req,res){
         const {EmpIdf,AluStatus} = req.body;
         const retorno = await Aluno.findAll({
+            attributes: {exclude: ['AluFoto']},
             where : {
                 EmpIdf,
                 AluStatus
@@ -125,6 +127,7 @@ module.exports = {
             usuFim = 99999999990;
         }
         const retorno = await Aluno.findAll({
+            attributes: {exclude: ['AluFoto']},
             where : {
                 EmpIdf,
                 AluStatus,
