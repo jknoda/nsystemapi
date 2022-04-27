@@ -6,23 +6,25 @@ module.exports = {
     async findMonthYear(req,res){
         const {EmpIdf, mes, ano} = req.body;
         var sql = `
-            SELECT treino.EmpIdf ,treino.TreIdf,treino.TreData, treino.TreTitulo, treino.TreResponsavel,
-              treinoatv.AtvIdf, treinoatv.TreAtvDesc, treinoatv.TreAtvMin
-            FROM treino  
-            LEFT JOIN treinoatv
-            ON treino.EmpIdf = treinoatv.EmpIdf AND treino.TreIdf = treinoatv.TreIdf
-            WHERE treino.EmpIdf = ?`
+            SELECT treino."EmpIdf" ,treino."TreIdf",treino."TreData", 
+              treino."TreTitulo", treino."TreResponsavel",
+              treinoatv."AtvIdf", treinoatv."TreAtvDesc",
+              treinoatv."TreAtvMin"
+            FROM yamazaki.treino  
+            LEFT JOIN yamazaki.treinoatv
+            ON treino."EmpIdf" = treinoatv."EmpIdf" AND treino."TreIdf" = treinoatv."TreIdf"
+            WHERE treino."EmpIdf" = ?`
           if (mes > 0)
           {
             sql = sql.concat(
               `
-                AND MONTH(treino.TreData) = ? 
+                AND EXTRACT(MONTH FROM treino."TreData") = ? 
               `
             )
           }else{
             sql = sql.concat(
               `
-                AND MONTH(treino.TreData) > ? 
+                AND EXTRACT(MONTH FROM treino."TreData") > ? 
               `
             )
           }
@@ -31,19 +33,19 @@ module.exports = {
           {
             sql = sql.concat(
               `
-                AND YEAR(treino.TreData) = ?
+                AND EXTRACT(YEAR FROM treino."TreData") = ?
               `
             )
           }else{
             sql = sql.concat(
               `
-                AND YEAR(treino.TreData) > ?
+                AND EXTRACT(YEAR FROM treino."TreData") > ?
               `
             )
           }
           sql = sql.concat(
             `
-              ORDER BY treino.TreData;
+              ORDER BY treino."TreData";
             `
           );
         retorno = await ConsultaAtividades.sequelize.query(sql, {
@@ -58,23 +60,24 @@ module.exports = {
         });
 
         var output = [];
-
-        retorno.forEach(function(item) {
-            var existing = output.filter(function(v, i) {
-              return v.TreIdf == item.TreIdf;
-            });
-            if (existing.length) {
-              var existingIndex = output.indexOf(existing[0]);
-              var itemAux = item.AtvIdf.toString() + "@@" + item.TreAtvDesc + "@@" + item.TreAtvMin.toString();
-              output[existingIndex].TreAtvDesc = output[existingIndex].TreAtvDesc.concat(itemAux);
-            } else {
-              if (typeof item.TreAtvDesc == 'string'){
+        if (retorno.length > 0){
+          retorno.forEach(function(item) {
+              var existing = output.filter(function(v, i) {
+                return v.TreIdf == item.TreIdf;
+              });
+              if (existing.length) {
+                var existingIndex = output.indexOf(existing[0]);
                 var itemAux = item.AtvIdf.toString() + "@@" + item.TreAtvDesc + "@@" + item.TreAtvMin.toString();
-                item.TreAtvDesc = [itemAux];
+                output[existingIndex].TreAtvDesc = output[existingIndex].TreAtvDesc.concat(itemAux);
+              } else {
+                if (typeof item.TreAtvDesc == 'string'){
+                  var itemAux = item.AtvIdf.toString() + "@@" + item.TreAtvDesc + "@@" + item.TreAtvMin.toString();
+                  item.TreAtvDesc = [itemAux];
+                }
+                output.push(item);
               }
-              output.push(item);
-            }
           });
+        }
 
         return res.json(output);
     },
