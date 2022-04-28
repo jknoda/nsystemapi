@@ -78,15 +78,11 @@ class Aluno extends Model {
                 allowNull: true
             },
             AluTPri: {
-                type: DataTypes.DATE,
+                type: DataTypes.CHAR,
                 allowNull: true
             },
             AluTImg: {
-                type: DataTypes.DATE,
-                allowNull: true
-            },
-            AluTImg: {
-                type: DataTypes.DATE,
+                type: DataTypes.CHAR,
                 allowNull: true
             },
             AluFoto: {
