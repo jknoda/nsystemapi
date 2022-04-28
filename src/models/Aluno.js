@@ -100,6 +100,10 @@ class Aluno extends Model {
             AluCEP: {
                 type: DataTypes.INTEGER,
                 allowNull: true
+            },
+            AluCompl: {
+                type: DataTypes.STRING,
+                allowNull: true
             }
         }, {
             sequelize,
