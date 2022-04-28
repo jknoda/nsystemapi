@@ -96,6 +96,10 @@ class Aluno extends Model {
             DataAlt: {
                 type: DataTypes.DATE,
                 allowNull: true
+            },
+            AluCEP: {
+                type: DataTypes.INTEGER,
+                allowNull: true
             }
         }, {
             sequelize,
