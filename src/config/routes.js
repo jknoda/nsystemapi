@@ -23,6 +23,13 @@ module.exports = function (server) {
     api.post('/aluno/delete', AlunoController.delete);
     api.post('/aluno/deletealuno', AlunoController.deletealuno);
 
+    const AluRespController = require('../controllers/AluRespController');
+    api.post('/aluresp/create', AluRespController.create);
+    api.post('/aluresp/findall', AluRespController.findall);
+    api.post('/aluresp/find', AluRespController.find);
+    api.post('/aluresp/findallusu', AluRespController.findallusu);
+    api.post('/aluresp/update', AluRespController.update);
+    api.post('/aluresp/delete', AluRespController.delete);
 
     const AtividadeController = require('../controllers/AtividadeController');
     api.post('/atividade/create', AtividadeController.create);

@@ -59,7 +59,8 @@ module.exports = {
     async findall(req,res){
         const {EmpIdf,UsuIdf} = req.body;
         const retorno = await Usuario.findAll({
-            where : {EmpIdf}
+            where : {EmpIdf},
+            order: ['UsuNome']
         }).catch(function(err){
             return errDB(res,err);
         });

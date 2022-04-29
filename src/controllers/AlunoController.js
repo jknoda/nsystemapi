@@ -4,6 +4,7 @@ const Aluno = require('../models/Aluno');
 const Anamnese = require('../models/Anamnese');
 const { Op } = require("sequelize");
 const { json } = require('express/lib/response');
+const sequelize = require("sequelize");
 
 module.exports = {
     async create(req,res){
@@ -121,6 +122,7 @@ module.exports = {
         return res.json(retorno);
     },
 
+/*
     async findallresp(req,res){
         const {EmpIdf,AluStatus,UsuIdf} = req.body;
         let usuIni = UsuIdf;
@@ -144,6 +146,55 @@ module.exports = {
         }).catch(function(err){
             return errDB(res,err);
         });
+        return res.json(retorno);
+    },
+*/
+
+    async findallresp(req,res){
+        const {EmpIdf,AluStatus, UsuIdf} = req.body;
+        let usuIni = UsuIdf;
+        let usuFim = UsuIdf;
+        if (UsuIdf == 0)
+        {
+            usuIni = 0;
+            usuFim = 99999999990;
+        }
+        
+        var sql = `
+            SELECT DISTINCT 
+                aluno."EmpIdf", 
+                aluno."AluIdf", 
+                aluno."AluNome",
+                aluno."AluFone",
+                aluno."AluDataNasc",
+                aluno."AluStatus"
+            FROM yamazaki.aluno
+            LEFT JOIN yamazaki.aluresp 
+            ON aluresp."EmpIdf" = aluno."EmpIdf" 
+            AND aluresp."AluIdf" = aluno."AluIdf"
+            WHERE aluno."EmpIdf" = ? 
+            AND aluno."AluStatus" = ?
+            AND
+            ((aluno."UsuIdf" >= ? AND aluno."UsuIdf" <= ?)
+            OR(
+                aluno."UsuIdf" = ?
+                OR aluresp."UsuIdf" = ?
+            ))
+            ORDER BY aluno."AluNome"
+        `;
+        retorno = await Aluno.sequelize.query(sql, {
+            replacements: [
+                EmpIdf,
+                AluStatus,
+                usuIni,
+                usuFim,
+                UsuIdf,
+                UsuIdf
+            ],
+            type: sequelize.QueryTypes.SELECT
+        }).catch(function(err){
+            return errDB(res,err);
+        });		
         return res.json(retorno);
     },
 

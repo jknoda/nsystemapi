@@ -57,5 +57,7 @@ Acesso.init(connection);
 const Logdata = require('../models/Logdata');
 Logdata.init(connection);
 
+const AluResp = require('../models/AluResp');
+AluResp.init(connection);
 
 module.exports = connection;
