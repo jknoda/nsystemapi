@@ -80,7 +80,7 @@ module.exports = {
     async getfindall(req,res){
         var EmpIdf = req.query.empidf;
         const retorno = await News.findAll({
-            attributes: {exclude: ['NewsImage']},
+            //attributes: {exclude: ['NewsImage']},
             where : {EmpIdf},
             order: [
                 [ 'NewsData', 'DESC' ],
