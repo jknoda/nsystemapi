@@ -172,8 +172,20 @@ module.exports = {
             LEFT JOIN yamazaki.aluresp 
             ON aluresp."EmpIdf" = aluno."EmpIdf" 
             AND aluresp."AluIdf" = aluno."AluIdf"
-            WHERE aluno."EmpIdf" = ? 
-            AND aluno."AluStatus" = ?
+            WHERE aluno."EmpIdf" = ? `
+
+            if (AluStatus == 'X'){
+                sql +=
+                `AND aluno."AluStatus" <> ?`
+            }
+            else
+            {
+                sql +=
+                `AND aluno."AluStatus" = ?`
+            }
+
+            sql +=
+            `
             AND
             ((aluno."UsuIdf" >= ? AND aluno."UsuIdf" <= ?)
             OR(
