@@ -2,6 +2,7 @@ const errDB = require('../common/_sendErrorsDB');
 const logDB = require('../common/_logDB');
 const Acesso = require('../models/Acesso')
 
+
 module.exports = {
     async create(req,res){
         const {Usuario,
