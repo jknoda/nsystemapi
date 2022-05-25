@@ -36,6 +36,10 @@ class Usuario extends Model {
             DataAlt: {
                 type: DataTypes.DATE,
                 allowNull: true
+            },
+            ReceberEmail: {
+                type: DataTypes.CHAR,
+                allowNull: false
             }
         }, {
             sequelize,

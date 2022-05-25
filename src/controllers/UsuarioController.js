@@ -5,7 +5,7 @@ const Usuario = require('../models/Usuario')
 module.exports = {
     async create(req,res){
         const {EmpIdf, UsuEmail, UsuNome, 
-            UsuCPF, UsuPerfil } = req.body;
+            UsuCPF, UsuPerfil, ReceberEmail } = req.body;
         const DataInc = new Date();
         const DataAlt = new Date();
         var UsuIdf = 0;
@@ -20,7 +20,7 @@ module.exports = {
         }).finally(()=>{
             UsuIdf++;
             Usuario.create({EmpIdf, UsuIdf, UsuEmail, UsuNome, 
-                UsuCPF, UsuPerfil, DataInc, DataAlt})
+                UsuCPF, UsuPerfil, DataInc, DataAlt, ReceberEmail})
             .then(()=>{
                 logDB({
                     idf:0,
@@ -69,12 +69,12 @@ module.exports = {
 
     async update(req,res){
         const {EmpIdf, UsuIdf, UsuNome, 
-            UsuCPF, UsuPerfil } = req.body;
+            UsuCPF, UsuPerfil, ReceberEmail } = req.body;
         const DataAlt = new Date();
         await Usuario.update(
         {
             UsuNome, 
-            UsuCPF , UsuPerfil, DataAlt
+            UsuCPF , UsuPerfil, DataAlt, ReceberEmail
         },
         {
             where: {
