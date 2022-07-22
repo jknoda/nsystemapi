@@ -37,6 +37,10 @@ class QuizResp extends Model {
                 allowNull: false,
                 defaultValue: false
             },  
+            QuizRespCompl: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },  
             DataInc: {
                 type: DataTypes.DATE,
                 allowNull: false
