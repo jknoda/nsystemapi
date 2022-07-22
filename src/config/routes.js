@@ -118,6 +118,28 @@ module.exports = function (server) {
     api.post('/news/update', NewsController.update);
     api.post('/news/delete', NewsController.delete);
 
+    const QuizController = require('../controllers/QuizController');
+    api.post('/quiz/create', QuizController.create);
+    api.post('/quiz/findall', QuizController.findall);
+    api.post('/quiz/find', QuizController.find);
+    api.post('/quiz/update', QuizController.update);
+    api.post('/quiz/delete', QuizController.delete);
+    
+    const QuizAlterController = require('../controllers/QuizAlterController');
+    api.post('/quizalter/create', QuizAlterController.create);
+    api.post('/quizalter/findall', QuizAlterController.findall);
+    api.post('/quizalter/find', QuizAlterController.find);
+    api.post('/quizalter/update', QuizAlterController.update);
+    api.post('/quizalter/delete', QuizAlterController.delete);
+
+    const QuizRespController = require('../controllers/QuizRespController');
+    api.post('/quizresp/create', QuizRespController.create);
+    api.post('/quizresp/findall', QuizRespController.findall);
+    api.post('/quizresp/find', QuizRespController.find);
+    api.post('/quizresp/update', QuizRespController.update);
+    api.post('/quizresp/delete', QuizRespController.delete);    
+    
+
     const AcessoController = require('../controllers/AcessoController');
     api.post('/acesso/create', AcessoController.create);
 

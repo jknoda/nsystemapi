@@ -60,4 +60,13 @@ Logdata.init(connection);
 const AluResp = require('../models/AluResp');
 AluResp.init(connection);
 
+const Quiz = require('../models/Quiz');
+Quiz.init(connection);
+
+const QuizAlternativas = require('../models/QuizAltermativas');
+QuizAlternativas.init(connection);
+
+const QuizResp = require('../models/QuizResp');
+QuizResp.init(connection);
+
 module.exports = connection;
