@@ -8,6 +8,7 @@ module.exports = {
             QuizIdf,
             QuizResposta,
             QuizCerta,
+            QuizResCompl,
             UsuIdf} = req.body;
         const DataInc = new Date();
         const DataAlt = new Date();
@@ -27,6 +28,7 @@ module.exports = {
                 QuizResSeq,
                 QuizResposta,
                 QuizCerta,
+                QuizResCompl,
                 UsuIdf,
                 DataInc,
                 DataAlt})
@@ -71,6 +73,7 @@ module.exports = {
                 QuizResSeq,
                 QuizResposta,
                 QuizCerta,
+                QuizResCompl,
                 UsuIdf } = req.body;
         const DataAlt = new Date();
         await QuizAlter.update(
@@ -80,6 +83,7 @@ module.exports = {
             QuizResSeq,
             QuizResposta,
             QuizCerta,
+            QuizResCompl,
             UsuIdf,
             DataAlt
         },

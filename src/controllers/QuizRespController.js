@@ -9,8 +9,7 @@ module.exports = {
             QuizRespEmail,
             QuizResSeq,
             UsuIdf,
-            QuizRespAcerto,
-            QuizRespCompl} = req.body;
+            QuizRespAcerto} = req.body;
         const DataInc = new Date();
         var QuizRespIdf = 0;
         await QuizResp.findOne({
@@ -30,7 +29,6 @@ module.exports = {
                 QuizResSeq,
                 UsuIdf,
                 QuizRespAcerto,
-                QuizRespCompl,
                 DataInc})
             .then(()=>{
                 logDB({
@@ -74,8 +72,7 @@ module.exports = {
                 QuizRespEmail,
                 QuizResSeq,
                 UsuIdf,
-                QuizRespAcerto,
-                QuizRespCompl } = req.body;
+                QuizRespAcerto} = req.body;
         await QuizResp.update(
         {
             EmpIdf,
