@@ -27,7 +27,11 @@ class QuizAlternativas extends Model {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
-            },           
+            },      
+            QuizResCompl: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },  
             UsuIdf: {
                 type: DataTypes.INTEGER,
                 allowNull: true
