@@ -119,5 +119,15 @@ module.exports = {
             dado:JSON.stringify(req.body)
         });                
         return res.json(retorno);
-    }
+    },
+
+    async has(req,res){
+        const {EmpIdf,QuizIdf,UsuIdf} = req.body;
+        const retorno = await QuizResp.findOne({
+            where : {EmpIdf, QuizIdf, UsuIdf}
+        }).catch(function(err){
+            return errDB(res,err);
+        });
+        return res.json(retorno != null);
+    },
 }

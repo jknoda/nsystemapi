@@ -24,13 +24,13 @@ class QuizAlternativas extends Model {
                 allowNull: false
             },
             QuizCerta: {
-                type: DataTypes.BOOLEAN,
+                type: DataTypes.CHAR,
                 allowNull: false,
-                defaultValue: false
+                defaultValue: 'N'
             },      
             QuizResCompl: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: true
             },  
             UsuIdf: {
                 type: DataTypes.INTEGER,

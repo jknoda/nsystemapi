@@ -123,7 +123,7 @@ module.exports = function (server) {
     api.post('/quiz/findall', QuizController.findall);
     api.post('/quiz/find', QuizController.find);
     api.post('/quiz/update', QuizController.update);
-    api.post('/quiz/delete', QuizController.delete);
+    api.post('/quiz/delete', QuizController.deleteQuiz);
     
     const QuizAlterController = require('../controllers/QuizAlterController');
     api.post('/quizalter/create', QuizAlterController.create);
@@ -138,6 +138,7 @@ module.exports = function (server) {
     api.post('/quizresp/find', QuizRespController.find);
     api.post('/quizresp/update', QuizRespController.update);
     api.post('/quizresp/delete', QuizRespController.delete);    
+    api.post('/quizresp/has', QuizRespController.has);    
     
 
     const AcessoController = require('../controllers/AcessoController');

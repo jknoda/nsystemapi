@@ -29,7 +29,12 @@ class Quiz extends Model {
             QuizImagem: {
                 type: DataTypes.BLOB,
                 allowNull: true
-            },               
+            },  
+            QuizLiberado: {
+                type: DataTypes.CHAR,
+                allowNull: true,
+                defaultValue: 'N'
+            },             
             DataInc: {
                 type: DataTypes.DATE,
                 allowNull: false
