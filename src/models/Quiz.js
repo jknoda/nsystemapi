@@ -22,6 +22,13 @@ class Quiz extends Model {
                 type: DataTypes.DATE,
                 allowNull: false
             },
+            QuizDataIni: {
+                type: DataTypes.DATE,
+                allowNull: true
+            },QuizDataFim: {
+                type: DataTypes.DATE,
+                allowNull: true
+            },
             UsuIdf: {
                 type: DataTypes.INTEGER,
                 allowNull: true
