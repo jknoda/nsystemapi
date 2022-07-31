@@ -69,4 +69,7 @@ QuizAlternativas.init(connection);
 const QuizResp = require('../models/QuizResp');
 QuizResp.init(connection);
 
+const JudoCard = require('../models/JudoCard');
+JudoCard.init(connection);
+
 module.exports = connection;

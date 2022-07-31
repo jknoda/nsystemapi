@@ -2,8 +2,6 @@ const errDB = require('../common/_sendErrorsDB');
 const logDB = require('../common/_logDB');
 const Aluno = require('../models/Aluno');
 const Anamnese = require('../models/Anamnese');
-const { Op } = require("sequelize");
-const { json } = require('express/lib/response');
 const sequelize = require("sequelize");
 
 module.exports = {

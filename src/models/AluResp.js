@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize');
-const Usuario = require('../models/Usuario');
 class AluResp extends Model {
     static init(sequelize) {
         super.init({

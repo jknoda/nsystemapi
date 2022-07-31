@@ -2,7 +2,6 @@ const errDB = require('../common/_sendErrorsDB');
 const logDB = require('../common/_logDB');
 const Quiz = require('../models/Quiz')
 const QuizAlter = require('../models/QuizAltermativas')
-const { Op } = require("sequelize");
 const QuizResp = require('../models/QuizResp');
 
 module.exports = {

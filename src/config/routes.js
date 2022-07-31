@@ -138,8 +138,14 @@ module.exports = function (server) {
     api.post('/quizresp/find', QuizRespController.find);
     api.post('/quizresp/update', QuizRespController.update);
     api.post('/quizresp/delete', QuizRespController.delete);    
-    api.post('/quizresp/has', QuizRespController.has);    
+    api.post('/quizresp/has', QuizRespController.has);   
     
+    const JudocardController = require('../controllers/JudoCardController');
+    api.post('/judocard/create', JudocardController.create);
+    api.post('/judocard/findall', JudocardController.findall);
+    api.post('/judocard/find', JudocardController.find);
+    api.post('/judocard/update', JudocardController.update);
+    api.post('/judocard/delete', JudocardController.delete);    
 
     const AcessoController = require('../controllers/AcessoController');
     api.post('/acesso/create', AcessoController.create);
