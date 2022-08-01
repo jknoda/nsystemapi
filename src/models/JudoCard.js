@@ -17,7 +17,7 @@ class JudoCard extends Model {
                 allowNull: false
             },
             Desafio: {
-                type: DataTypes.STRING(200),
+                type: DataTypes.STRING(400),
                 allowNull: false
             },
             Imagem: {
@@ -25,7 +25,7 @@ class JudoCard extends Model {
                 allowNull: true
             },  
             Resposta: {
-                type: DataTypes.STRING(200),
+                type: DataTypes.STRING(400),
                 allowNull: false
             },             
             DataInc: {
