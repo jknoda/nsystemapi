@@ -63,7 +63,6 @@ module.exports = {
 				judocard."CatIdf", 
 				judocard."ClasIdf", 
 				judocard."Desafio", 
-                judocard."Imagem", 
                 judocard."Resposta", 
                 judocard."DataInc", 
                 judocard."CardIdf", 
