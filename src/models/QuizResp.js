@@ -32,6 +32,10 @@ class QuizResp extends Model {
                 type: DataTypes.INTEGER,
                 allowNull: true
             },
+            QuizNome: {
+                type: DataTypes.STRING(100),
+                allowNull: true
+            },                    
             QuizRespAcerto: {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,

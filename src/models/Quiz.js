@@ -41,7 +41,7 @@ class Quiz extends Model {
                 type: DataTypes.CHAR,
                 allowNull: true,
                 defaultValue: 'N'
-            },             
+            },                            
             DataInc: {
                 type: DataTypes.DATE,
                 allowNull: false

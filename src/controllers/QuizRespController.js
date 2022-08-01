@@ -9,6 +9,7 @@ module.exports = {
             QuizRespEmail,
             QuizResSeq,
             UsuIdf,
+            QuizNome,
             QuizRespAcerto} = req.body;
         const DataInc = new Date();
         var QuizRespIdf = 0;
@@ -28,6 +29,7 @@ module.exports = {
                 QuizRespEmail,
                 QuizResSeq,
                 UsuIdf,
+                QuizNome,
                 QuizRespAcerto,
                 DataInc})
             .then(()=>{
@@ -72,6 +74,7 @@ module.exports = {
                 QuizRespEmail,
                 QuizResSeq,
                 UsuIdf,
+                QuizNome,
                 QuizRespAcerto} = req.body;
         await QuizResp.update(
         {
@@ -81,6 +84,7 @@ module.exports = {
             QuizRespEmail,
             QuizResSeq,
             UsuIdf,
+            QuizNome,
             QuizRespAcerto,
             QuizRespCompl
         },
