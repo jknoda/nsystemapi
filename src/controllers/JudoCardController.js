@@ -74,6 +74,7 @@ module.exports = {
 			judocard."CatIdf" = judocardcat."CatIdf"
 			INNER JOIN yamazaki.judocardclas ON
 			judocard."ClasIdf" = judocardclas."ClasIdf"
+            ORDER BY judocard."Idf"
 		`;
         retorno = await JudoCard.sequelize
         .query(sql,{type: sequelize.QueryTypes.SELECT})
