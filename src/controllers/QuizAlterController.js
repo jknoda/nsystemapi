@@ -60,7 +60,8 @@ module.exports = {
     async findall(req,res){
         const {EmpIdf, QuizIdf} = req.body;
         const retorno = await QuizAlter.findAll({
-            where : {EmpIdf,QuizIdf}
+            where : {EmpIdf,QuizIdf},
+            order: ['EmpIdf', 'QuizIdf', 'QuizResSeq']
         }).catch(function(err){
             return errDB(res,err);
         });
