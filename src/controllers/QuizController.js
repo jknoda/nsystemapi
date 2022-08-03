@@ -67,7 +67,8 @@ module.exports = {
         const {EmpIdf} = req.body;
         const retorno = await Quiz.findAll({
             attributes: {exclude: ['QuizImagem']},
-            where : {EmpIdf}
+            where : {EmpIdf},
+            order: ['EmpIdf', 'QuizIdf']
         }).catch(function(err){
             return errDB(res,err);
         });
