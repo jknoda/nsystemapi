@@ -124,6 +124,7 @@ module.exports = function (server) {
     api.post('/quiz/find', QuizController.find);
     api.post('/quiz/update', QuizController.update);
     api.post('/quiz/delete', QuizController.deleteQuiz);
+    api.post('/quiz/findresp', QuizController.findresp);
     
     const QuizAlterController = require('../controllers/QuizAlterController');
     api.post('/quizalter/create', QuizAlterController.create);

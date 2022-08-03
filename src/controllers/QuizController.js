@@ -3,6 +3,7 @@ const logDB = require('../common/_logDB');
 const Quiz = require('../models/Quiz')
 const QuizAlter = require('../models/QuizAltermativas')
 const QuizResp = require('../models/QuizResp');
+const sequelize = require("sequelize");
 
 module.exports = {
     async create(req,res){
@@ -163,5 +164,54 @@ module.exports = {
             dado:JSON.stringify(req.body)
         });                
         return res.json("OK");
+    },
+
+    async findresp(req,res){
+        const {EmpIdf} = req.body;
+		var sql = `
+            SELECT Resposta."QuizNome", 
+                quiz."QuizPergunta", 
+                Resposta."Qde", 
+                Alternativa."QuizResposta", 
+                quiz."EmpIdf", 
+                quiz."QuizIdf",
+                Resposta."Data"
+            FROM yamazaki.quiz 
+            INNER JOIN
+                (SELECT "EmpIdf", 
+                    "QuizIdf", 
+                    "UsuIdf", 
+                    "QuizNome", 
+                    count(*) AS "Qde", 
+                    MAX("DataInc") AS "Data"
+                    FROM yamazaki.quizresp
+                    GROUP BY "EmpIdf","QuizIdf", "UsuIdf", "QuizNome") AS Resposta
+                ON quiz."EmpIdf" = Resposta."EmpIdf" 
+                AND quiz."QuizIdf" = Resposta."QuizIdf"
+            INNER JOIN
+                (SELECT 
+                    "EmpIdf", 
+                    "QuizIdf", 
+                    "QuizResposta", 
+                    "QuizCerta"
+                    FROM yamazaki.quizalternativas) AS Alternativa
+                ON quiz."EmpIdf" = Alternativa."EmpIdf" 
+                AND Resposta."QuizIdf" = Alternativa."QuizIdf" 
+                AND Alternativa."QuizCerta" = 'S'
+            WHERE quiz."QuizDataFim" >= current_date
+                AND quiz."EmpIdf" = ?
+            ORDER BY quiz."EmpIdf", quiz."QuizIdf", 
+            Resposta."UsuIdf", Resposta."QuizNome"
+            `;
+        retorno = await Quiz.sequelize.query(sql, {
+            replacements: [
+                EmpIdf
+            ],
+            type: sequelize.QueryTypes.SELECT
+        }).catch(function(err){
+            return errDB(res,err);
+        });			
+		
+        return res.json(retorno);
     }
 }
